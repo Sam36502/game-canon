@@ -1,15 +1,22 @@
+#	
+#	Raylib Game Makefile
+#	
+
+NAME=pong
 
 SRC_DIR=src
-SRC=$(wildcard $(SRC_DIR)/*.c)
 OBJ_DIR=obj
-OBJ := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 BIN_DIR=bin
-BIN=$(BIN_DIR)/pong
+
+SRC=$(wildcard $(SRC_DIR)/*.c)
+OBJ := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
+BIN=$(BIN_DIR)/$(NAME)
 
 CC=gcc
 CPPFLAGS=-Iinclude
 CFLAGS=-g -Wall
 LDLIBS=-lraylib
+
 
 .PHONY: run clean 
 

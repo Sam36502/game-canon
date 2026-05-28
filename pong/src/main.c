@@ -3,6 +3,7 @@
 //	
 //	Reimplemented using Raylib
 //	
+
 #include <raylib.h>
 #include <raymath.h>
 #include <stdint.h>
@@ -57,12 +58,12 @@ static int g_num_players = 1;
 static int g_colour_theme = 0;
 
 const Color g_colour_themes[5][4] = {
-//		Background	Ball		Paddles		Score
-	{	BLACK,		WHITE,		WHITE,		WHITE	},
-	{	BLACK,		ORANGE,		ORANGE,		ORANGE	},
-	{	DARKBLUE,	BLUE,		BLUE,		BLUE	},
-	{	BLACK,		RED,		GREEN,		WHITE	},
-	{	WHITE,		BLACK,		BLACK,		BLACK	},
+//			Background		Ball			Paddles			Score
+	{	BLACK,		WHITE,		WHITE,		WHITE	},	// Black & White
+	{	BLACK,		ORANGE,		ORANGE,		ORANGE	},	// Orange
+	{	DARKBLUE,	BLUE,		BLUE,		BLUE	},	// Commodore
+	{	BLACK,		RED,		GREEN,		WHITE	},	// Snake
+	{	WHITE,		BLACK,		BLACK,		BLACK	},	// White & Black
 };
 #define CLR_BACKGROUND (g_colour_themes[g_colour_theme][0])
 #define CLR_BALL (g_colour_themes[g_colour_theme][1])

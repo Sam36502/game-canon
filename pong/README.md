@@ -1,3 +1,3 @@
 # Pong
 
-Pong in Raylib.
+a basic implementation of Pong in Raylib.

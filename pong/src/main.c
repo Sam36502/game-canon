@@ -358,6 +358,8 @@ void play_jingle() {
 void print_help() {
 	puts("pong - A simple pong game");
 	puts("");
+	puts("Version: " VERSION);
+	puts("");
 	puts("Options:");
 	puts("  -h,--help		Print this information and exit");
 	puts("");

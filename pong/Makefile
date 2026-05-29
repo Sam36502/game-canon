@@ -3,6 +3,7 @@
 #	
 
 NAME=pong
+VERSION=1.0.0
 
 SRC_DIR=src
 OBJ_DIR=obj
@@ -15,16 +16,24 @@ BIN=$(BIN_DIR)/$(NAME)
 CC=gcc
 CPPFLAGS=-Iinclude
 CFLAGS=-g -Wall
+LDFLAGS=
 LDLIBS=-lraylib
 
 
-.PHONY: run clean 
+.PHONY: run clean release_win
+
+release_win: CPPFLAGS = -Iinclude
+release_win: CFLAGS = -Wall -O2 -DVERSION=\"$(VERSION)\" -DRELEASE
+release_win: LDFLAGS = -mwindows
+release_win: LDLIBS = -lraylib -lgdi32 -lwinmm
+
+release_win: $(BIN)
 
 run: $(BIN)
 	$(BIN)
 
 $(BIN): $(OBJ) | $(BIN_DIR)
-	$(CC) $^ $(LDLIBS) -o $@
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@

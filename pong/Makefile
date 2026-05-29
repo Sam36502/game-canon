@@ -15,17 +15,17 @@ BIN=$(BIN_DIR)/$(NAME)
 
 CC=gcc
 CPPFLAGS=-Iinclude
-CFLAGS=-g -Wall
+CFLAGS=-g -Wall -DVERSION=\"$(VERSION)\"
 LDFLAGS=
 LDLIBS=-lraylib
 
 
 .PHONY: run clean release_win
 
-release_win: CPPFLAGS = -Iinclude
-release_win: CFLAGS = -Wall -O2 -DVERSION=\"$(VERSION)\" -DRELEASE
-release_win: LDFLAGS = -mwindows
-release_win: LDLIBS = -lraylib -lgdi32 -lwinmm
+release_win: CPPFLAGS=-Iinclude
+release_win: CFLAGS=-O2 -Wall -DVERSION=\"$(VERSION)\" -DRELEASE
+release_win: LDFLAGS=-mwindows
+release_win: LDLIBS=-lraylib -lgdi32 -lwinmm
 
 release_win: $(BIN)
 

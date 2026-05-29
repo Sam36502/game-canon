@@ -12,6 +12,7 @@ you have to solve in order to implement various game features.
  - **Snake** *(NOT STARTED)* The nostalgia of every Nokia-owner
  - **Tetris** *(NOT STARTED)* Hope I don't get sued...
  - **Frogger** *(NOT STARTED)* Ribbit
+ - **Memory** *(IN PROGRESS)* Basic Memory game based on one from an old C64 disk I have
 
 ## Installation / Download
 *Not currently supported*

@@ -64,20 +64,21 @@ static int __osc_index = 0;
 
 void __callback(void *data, unsigned int size) {
 	static float phase = 0.0f;
+	static float env_vol = 0.0f;
 	for (int i=0; i<size; i++) {
 
 		// Handle basic envelope to avoid popping
 		static const float env_delta = 1.0f / (BEEP_ENV_TIME * (float) BEEP_SAMPLE_FREQ);
-		if (SND_duration > BEEP_ENV_TIME && SND_volume < 1.0f) SND_volume += env_delta;
-		if (SND_volume > 1.0f) SND_volume = 1.0f;
+		if (SND_duration > BEEP_ENV_TIME && env_vol < 1.0f) env_vol += env_delta;
+		if (env_vol > 1.0f) env_vol = 1.0f;
 
-		if (SND_duration <= BEEP_ENV_TIME) SND_volume -= env_delta;
-		if (SND_volume <= 0.0f) SND_volume = 0.0f;
+		if (SND_duration <= BEEP_ENV_TIME) env_vol -= env_delta;
+		if (env_vol <= 0.0f) env_vol = 0.0f;
 
 		// Create sample from wavetable
 		int wi = BEEP_WAVE_LEN * phase;
-		float sample = SND_volume * (float) SND_wave_data[wi];
-		((uint8_t *) data)[i] = (uint8_t) sample;
+		float sample = env_vol * (float) SND_wave_data[wi];
+		((uint8_t *) data)[i] = (uint8_t)(sample * SND_volume);
 		if (__osc_index < OSC_BUF_SIZE) __osc_buffer[__osc_index++] = (uint8_t) sample;
 
 		// Advance wave phase
